@@ -11,20 +11,13 @@ import UIKit
 class ViewController: UIViewController {
 
 	@IBOutlet private weak var display: UILabel!
-	private var displayValue: Double {
-		get {
-			return Double(display.text!)!
-		}
-		set {
-			display.text = String(newValue)
-		}
-	}
-	
-	
 	private var userIsInTheMiddleOfTyping = false
 	private var userIsInTheMiddleOfTypingFloatingNumber = false
 	
-//	when user pressed digits
+	
+	
+	
+	//	when user pressed digits
 	@IBAction func onDigitClicked(sender: UIButton) {
 		let digit = sender.currentTitle!
 		if userIsInTheMiddleOfTyping {
@@ -51,6 +44,28 @@ class ViewController: UIViewController {
 		userIsInTheMiddleOfTyping = false
 		userIsInTheMiddleOfTypingFloatingNumber = false
 		display.text = String(0)
+	}
+	
+//	when user pressed action buttons like +, -, ...
+	private var brain = CalculatorBrain()
+	private var displayValue: Double {
+		get {
+			return Double(display.text!)!
+		}
+		set {
+			display.text = String(newValue)
+		}
+	}
+	@IBAction func performOperation(sender: UIButton) {
+		if userIsInTheMiddleOfTyping {
+			brain.setOperand(displayValue)
+			userIsInTheMiddleOfTyping = false
+			userIsInTheMiddleOfTypingFloatingNumber = false
+		}
+		if let mathematicalSymbol = sender.currentTitle {
+			brain.performOperation(mathematicalSymbol)
+		}
+		displayValue = brain.result
 	}
 }
 
