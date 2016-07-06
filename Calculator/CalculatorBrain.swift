@@ -11,8 +11,8 @@ import Foundation
 class CalculatorBrain
 {
 	private var accumulator = 0.0
-	private var description = ""
-	private var displayNumberInEqual = true
+	private var descriptionAccumulator = " "
+	private var currentPrecedence = Int.max
 	var isPartialResult: Bool {
 		get {
 			return pending != nil
@@ -21,39 +21,39 @@ class CalculatorBrain
 	
 	func setOperand(operand: Double) {
 		accumulator = operand
-		if pending == nil {
-			description = String(operand)
-			displayNumberInEqual = true
-		}
+		descriptionAccumulator = String(operand)
 	}
 	
 	private enum Operation {
 		case Constant(Double)
-		case UnaryOperation((Double) -> Double)
-		case BinaryOperation((Double, Double) -> Double)
+		case UnaryOperation((Double) -> Double, (String) -> String)
+		case BinaryOperation((Double, Double) -> Double, (String, String) -> (String), Int)
 		case Equals
 	}
 	private var operations: Dictionary<String, Operation> = [
 		"π": Operation.Constant(M_PI),
 		"e": Operation.Constant(M_E),
-		"√": Operation.UnaryOperation(sqrt),
-		"cos": Operation.UnaryOperation(cos),
-		"×": Operation.BinaryOperation({$0 * $1}),
-		"+": Operation.BinaryOperation({$0 + $1}),
-		"−": Operation.BinaryOperation({$0 - $1}),
-		"÷": Operation.BinaryOperation({$0 / $1}),
+		"√": Operation.UnaryOperation(sqrt, { "√(\($0))" }),
+		"cos": Operation.UnaryOperation(cos, { "cos(\($0))" }),
+		"×": Operation.BinaryOperation({$0 * $1}, { "\($0) × \($1)" }, 1),
+		"+": Operation.BinaryOperation({$0 + $1}, { "\($0) + \($1)" }, 0),
+		"−": Operation.BinaryOperation({$0 - $1}, { "\($0) - \($1)" }, 0),
+		"÷": Operation.BinaryOperation({$0 / $1}, { "\($0) ÷ \($1)" }, 1),
 		"=": Operation.Equals
 	]
 	
 	struct PendingBinaryOperation {
 		var binaryOperation: (Double, Double) -> Double
 		var firstOperand: Double
+		var descriptionFunction: (String, String) -> String
+		var savedDescriptionAccumulator: String
 	}
 	
 	private var pending: PendingBinaryOperation?
 	
 	private func executePendingBinaryOperation() {
 		if pending != nil {
+			descriptionAccumulator = pending!.descriptionFunction(pending!.savedDescriptionAccumulator, descriptionAccumulator)
 			accumulator = pending!.binaryOperation(pending!.firstOperand, accumulator)
 			pending = nil
 		}
@@ -64,30 +64,20 @@ class CalculatorBrain
 			switch operation {
 			case .Constant(let value):
 				accumulator = value
-				description += symbol
-				displayNumberInEqual = false
-			case .UnaryOperation(let function):
-				if pending == nil { // when there's no pending operation, we can simply wrap everything with that unary operation
-					description = "\(symbol)(\(description))"
-				} else { // when there is pending operation, we wrap this unary operation first since it has higher priority
-					description += "\(symbol)(\(accumulator))"
-				}
-				displayNumberInEqual = false
-				accumulator = function(accumulator)
-			case .BinaryOperation(let function):
-				if pending == nil {
-					description += " \(symbol) "
-				} else { // we record current value in accumulator first
-					description = "(\(description)\(accumulator)) \(symbol) "
-				}
+				descriptionAccumulator = symbol
+			case .UnaryOperation(let valueFunction, let descriptionFunc):
+				accumulator = valueFunction(accumulator)
+				descriptionAccumulator = descriptionFunc(descriptionAccumulator)
+			case .BinaryOperation(let valueFunction, let descriptionFunc, let precedence):
 				executePendingBinaryOperation()
-				pending = PendingBinaryOperation(binaryOperation: function, firstOperand: accumulator)
+				if currentPrecedence < precedence {
+					descriptionAccumulator = "(\(descriptionAccumulator))"
+				}
+				currentPrecedence = precedence
+				pending = PendingBinaryOperation(binaryOperation: valueFunction, firstOperand: accumulator, descriptionFunction: descriptionFunc, savedDescriptionAccumulator: descriptionAccumulator)
 			case .Equals:
-				if pending != nil && displayNumberInEqual { // when we just finished typing constant or doing unary operation, there's no pending operation, and if we click equal now, we don't want to record current value in accumulator
-					description += "\(accumulator)"
-				}
 				executePendingBinaryOperation()
-				displayNumberInEqual = true
+	
 			}
 		}
 	}
@@ -100,15 +90,20 @@ class CalculatorBrain
 	
 	var processDescription: String {
 		get {
-			return description
+			if pending != nil {
+				return pending!.descriptionFunction(pending!.savedDescriptionAccumulator, pending!.savedDescriptionAccumulator == descriptionAccumulator ? "" : descriptionAccumulator)
+			} else {
+				return descriptionAccumulator
+			}
 		}
 	}
+	
 	
 	func clearEveryThing() {
 		accumulator = 0.0
 		pending = nil
-		displayNumberInEqual = true
-		description = ""
+		descriptionAccumulator = " "
+		currentPrecedence = Int.max
 	}
 	
 }

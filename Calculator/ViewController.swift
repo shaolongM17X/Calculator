@@ -46,7 +46,7 @@ class ViewController: UIViewController {
 		userIsInTheMiddleOfTyping = false
 		userIsInTheMiddleOfTypingFloatingNumber = false
 		display.text = String(0)
-		processDescription.text = ""
+		processDescription.text = " "
 		brain.clearEveryThing()
 	}
 	

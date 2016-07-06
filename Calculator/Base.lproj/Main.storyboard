@@ -28,14 +28,14 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="26"/>
                                                 <color key="backgroundColor" red="0.12201407068062831" green="0.12201407068062831" blue="0.12201407068062831" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="7bn-zf-y5Q">
                                                 <rect key="frame" x="0.0" y="26" width="560" height="48"/>
                                                 <color key="backgroundColor" red="0.12201407068062831" green="0.12201407068062831" blue="0.12201407068062831" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -52,7 +52,7 @@
                                                         <color key="backgroundColor" red="0.35980448298429324" green="0.35980448298429324" blue="0.35980448298429324" alpha="0.17580895390070922" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="AC">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="clearTheView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QNa-BB-lZ8"/>
@@ -63,7 +63,7 @@
                                                         <color key="backgroundColor" red="0.35980448298429324" green="0.35980448298429324" blue="0.35980448298429324" alpha="0.17580895390070922" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="π">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OXN-aE-Wl4"/>
@@ -74,7 +74,7 @@
                                                         <color key="backgroundColor" red="0.35980448298429324" green="0.35980448298429324" blue="0.35980448298429324" alpha="0.17580895390070922" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="√">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H0y-q3-dbY"/>
@@ -100,7 +100,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="7">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UXJ-Sd-KHY"/>
@@ -110,7 +110,7 @@
                                                         <rect key="frame" x="140" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="8">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uEG-GI-NLP"/>
@@ -120,7 +120,7 @@
                                                         <rect key="frame" x="280" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="9">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8xC-gK-649"/>
@@ -146,7 +146,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="4">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="smr-an-6AG"/>
@@ -156,7 +156,7 @@
                                                         <rect key="frame" x="140" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="5">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ToO-oj-Mo1"/>
@@ -166,7 +166,7 @@
                                                         <rect key="frame" x="280" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="6">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0qH-gD-nh3"/>
@@ -192,7 +192,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="1">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O9Y-AZ-9tU"/>
@@ -202,7 +202,7 @@
                                                         <rect key="frame" x="140" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="2">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3x0-iK-Js5"/>
@@ -212,7 +212,7 @@
                                                         <rect key="frame" x="280" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="3">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vth-IG-LqK"/>
@@ -238,7 +238,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="0">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="onDigitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gjV-Gk-phO"/>
@@ -252,7 +252,7 @@
                                                         <rect key="frame" x="280" y="0.0" width="140" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title=".">
-                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="pointSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rxm-BS-9Hw"/>
