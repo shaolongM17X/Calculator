@@ -15,6 +15,8 @@ class ViewController: UIViewController {
 	private var userIsInTheMiddleOfTypingFloatingNumber = false
 	
 	
+	@IBOutlet weak var processDescription: UILabel!
+	
 	
 	
 	//	when user pressed digits
@@ -44,6 +46,8 @@ class ViewController: UIViewController {
 		userIsInTheMiddleOfTyping = false
 		userIsInTheMiddleOfTypingFloatingNumber = false
 		display.text = String(0)
+		processDescription.text = ""
+		brain.clearEveryThing()
 	}
 	
 //	when user pressed action buttons like +, -, ...
@@ -66,6 +70,12 @@ class ViewController: UIViewController {
 			brain.performOperation(mathematicalSymbol)
 		}
 		displayValue = brain.result
+		processDescription.text = brain.processDescription
+		if brain.isPartialResult {
+			processDescription.text! += "..."
+		} else {
+			processDescription.text! += " = "
+		}
 	}
 }
 
