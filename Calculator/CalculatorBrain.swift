@@ -11,7 +11,7 @@ import Foundation
 class CalculatorBrain
 {
 	private var accumulator = 0.0
-	private var descriptionAccumulator = " "
+	private var descriptionAccumulator = "0"
 	private var currentPrecedence = Int.max
 	var isPartialResult: Bool {
 		get {
@@ -102,7 +102,7 @@ class CalculatorBrain
 	func clearEveryThing() {
 		accumulator = 0.0
 		pending = nil
-		descriptionAccumulator = " "
+		descriptionAccumulator = "0"
 		currentPrecedence = Int.max
 	}
 	

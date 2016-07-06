@@ -77,5 +77,21 @@ class ViewController: UIViewController {
 			processDescription.text! += " = "
 		}
 	}
+	@IBAction func onDeleteClicked(sender: UIButton) {
+		if var displayText = display.text {
+			let charCount = displayText.characters.count
+			if charCount == 1 {
+				display.text = String(0)
+				userIsInTheMiddleOfTyping = false
+			} else if displayText.characters.last == "." {
+				displayText.removeAtIndex(displayText.endIndex.predecessor())
+				display.text = displayText
+				userIsInTheMiddleOfTypingFloatingNumber = false
+			} else {
+				displayText.removeAtIndex(displayText.endIndex.predecessor())
+				display.text = displayText
+			}
+		}
+	}
 }
 
