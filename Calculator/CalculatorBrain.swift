@@ -13,6 +13,34 @@ class CalculatorBrain
 	private var accumulator = 0.0
 	private var descriptionAccumulator = "0"
 	private var currentPrecedence = Int.max
+	private var internalProgram = [AnyObject]()
+	
+	// used to store all the variables and their corresponding values
+	// when the values changed, we will restore the program to recalculate result
+	var variableValues = [String: Double]() {
+		didSet {
+			program = internalProgram
+		}
+	}
+	
+	var result: Double {
+		get {
+			return accumulator
+		}
+	}
+	
+	// the description showing all the processes that led to this result
+	var processDescription: String {
+		get {
+			if pending != nil {
+				return pending!.descriptionFunction(pending!.savedDescriptionAccumulator, pending!.savedDescriptionAccumulator == descriptionAccumulator ? "" : descriptionAccumulator)
+			} else {
+				return descriptionAccumulator
+			}
+		}
+	}
+	
+	typealias PropertyList = AnyObject
 	var isPartialResult: Bool {
 		get {
 			return pending != nil
@@ -22,7 +50,17 @@ class CalculatorBrain
 	func setOperand(operand: Double) {
 		accumulator = operand
 		descriptionAccumulator = String(operand)
+		internalProgram.append(operand)
 	}
+	
+	// variable related
+	func setOperand(variableName: String) {
+		accumulator = variableValues[variableName] ?? 0.0
+		descriptionAccumulator = variableName
+		internalProgram.append(variableName)
+	}
+	
+	
 	
 	private enum Operation {
 		case Constant(Double)
@@ -61,6 +99,7 @@ class CalculatorBrain
 	
 	func performOperation(symbol: String) {
 		if let operation = operations[symbol] {
+			internalProgram.append(symbol)
 			switch operation {
 			case .Constant(let value):
 				accumulator = value
@@ -70,6 +109,7 @@ class CalculatorBrain
 				descriptionAccumulator = descriptionFunc(descriptionAccumulator)
 			case .BinaryOperation(let valueFunction, let descriptionFunc, let precedence):
 				executePendingBinaryOperation()
+				
 				if currentPrecedence < precedence {
 					descriptionAccumulator = "(\(descriptionAccumulator))"
 				}
@@ -82,28 +122,45 @@ class CalculatorBrain
 		}
 	}
 	
-	var result: Double {
-		get {
-			return accumulator
-		}
-	}
-	
-	var processDescription: String {
-		get {
-			if pending != nil {
-				return pending!.descriptionFunction(pending!.savedDescriptionAccumulator, pending!.savedDescriptionAccumulator == descriptionAccumulator ? "" : descriptionAccumulator)
-			} else {
-				return descriptionAccumulator
-			}
-		}
-	}
 	
 	
-	func clearEveryThing() {
+	
+	func clear() {
 		accumulator = 0.0
 		pending = nil
 		descriptionAccumulator = "0"
 		currentPrecedence = Int.max
+		internalProgram.removeAll()
+		
+	}
+	
+	func clearEveryThing() {
+		clear()
+		variableValues.removeAll()
+	}
+	
+	
+	var program: PropertyList {
+		get {
+			return internalProgram
+		}
+		set {
+			clear()
+			if let arrayOfOps = newValue as? [AnyObject] {
+				for op in arrayOfOps {
+					if let operand = op as? Double {
+						setOperand(operand)
+					} else if let operation = op as? String {
+						// two cases: 1. operation symbol 2. variable
+						if variableValues[operation] != nil {
+							setOperand(operation)
+						} else {
+							performOperation(operation)
+						}
+					}
+				}
+			}
+		}
 	}
 	
 }

@@ -77,6 +77,7 @@ class ViewController: UIViewController {
 			processDescription.text! += " = "
 		}
 	}
+
 	@IBAction func onDeleteClicked(sender: UIButton) {
 		if var displayText = display.text {
 			let charCount = displayText.characters.count
@@ -93,5 +94,34 @@ class ViewController: UIViewController {
 			}
 		}
 	}
+	var savedProgram: CalculatorBrain.PropertyList?
+	@IBAction func save() {
+		savedProgram = brain.program
+	}
+	@IBAction func restore() {
+		if savedProgram != nil {
+			brain.program = savedProgram!
+			displayValue = brain.result
+			processDescription.text = brain.processDescription
+		}
+	}
+	
+	// set value of variable M to current value in display
+	@IBAction func setM() {
+		// This part is important because when we set M, we are actually typing digits, and as a result these two booleans will become true!!!
+		userIsInTheMiddleOfTyping = false
+		userIsInTheMiddleOfTypingFloatingNumber = false
+		//////////////////////
+		
+		brain.variableValues["M"] = displayValue
+		displayValue = brain.result
+		processDescription.text = brain.processDescription
+		
+	}
+	// put M as an operand
+	@IBAction func setOperandM() {
+		brain.setOperand("M")
+	}
+	
 }
 
