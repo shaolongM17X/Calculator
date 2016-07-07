@@ -79,7 +79,8 @@ class ViewController: UIViewController {
 	}
 
 	@IBAction func onDeleteClicked(sender: UIButton) {
-		if var displayText = display.text {
+		if userIsInTheMiddleOfTyping {
+			var displayText = display.text!
 			let charCount = displayText.characters.count
 			if charCount == 1 {
 				display.text = String(0)
@@ -92,15 +93,8 @@ class ViewController: UIViewController {
 				displayText.removeAtIndex(displayText.endIndex.predecessor())
 				display.text = displayText
 			}
-		}
-	}
-	var savedProgram: CalculatorBrain.PropertyList?
-	@IBAction func save() {
-		savedProgram = brain.program
-	}
-	@IBAction func restore() {
-		if savedProgram != nil {
-			brain.program = savedProgram!
+		} else { // we undo last thing we did
+			brain.forgetLastThing()
 			displayValue = brain.result
 			processDescription.text = brain.processDescription
 		}

@@ -72,6 +72,7 @@ class CalculatorBrain
 		"π": Operation.Constant(M_PI),
 		"e": Operation.Constant(M_E),
 		"√": Operation.UnaryOperation(sqrt, { "√(\($0))" }),
+		"sin": Operation.UnaryOperation(sin, { "sin(\($0))" }),
 		"cos": Operation.UnaryOperation(cos, { "cos(\($0))" }),
 		"×": Operation.BinaryOperation({$0 * $1}, { "\($0) × \($1)" }, 1),
 		"+": Operation.BinaryOperation({$0 + $1}, { "\($0) + \($1)" }, 0),
@@ -163,4 +164,10 @@ class CalculatorBrain
 		}
 	}
 	
+	func forgetLastThing() {
+		if !internalProgram.isEmpty {
+			internalProgram.removeLast()
+			program = internalProgram
+		}
+	}
 }
