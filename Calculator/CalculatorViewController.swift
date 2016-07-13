@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
 
 	@IBOutlet private weak var display: UILabel!
 	private var userIsInTheMiddleOfTyping = false
@@ -17,6 +17,10 @@ class ViewController: UIViewController {
 	
 	@IBOutlet weak var processDescription: UILabel!
 	
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		
+	}
 	
 	
 	//	when user pressed digits
