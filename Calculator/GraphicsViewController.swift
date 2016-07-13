@@ -12,6 +12,11 @@ class GraphicsViewController: UIViewController {
     
 
 
+	@IBOutlet weak var graphicsView: GraphicsView! {
+		didSet {
+			graphicsView.addGestureRecognizer(UIPinchGestureRecognizer(target: graphicsView, action: #selector(GraphicsView.changeScale(_:))))
+		}
+	}
 	
 
 }

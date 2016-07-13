@@ -19,6 +19,16 @@ class GraphicsView: UIView {
 	override func drawRect(rect: CGRect) {
         axeDrawer.drawAxesInRect(bounds, origin: CGPoint(x: bounds.midX, y: bounds.midY), pointsPerUnit: pointsPerUnit)
     }
+	
+	func changeScale(recognizor: UIPinchGestureRecognizer) {
+		switch recognizor.state {
+		case .Changed, .Ended:
+			pointsPerUnit *= recognizor.scale
+			recognizor.scale = 1.0
+		default:
+			break
+		}
+	}
 
 
 }

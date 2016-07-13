@@ -400,6 +400,9 @@
                             <constraint firstAttribute="trailing" secondItem="I1V-Dy-Wje" secondAttribute="trailing" id="jV5-aU-vOQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="graphicsView" destination="I1V-Dy-Wje" id="nGY-h6-YOo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWA-zE-mX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
