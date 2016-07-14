@@ -11,7 +11,7 @@
                 <splitViewController id="aNM-dO-gSd" sceneMemberID="viewController">
                     <connections>
                         <segue destination="ndf-wJ-YZm" kind="relationship" relationship="masterViewController" id="kzw-hY-eHE"/>
-                        <segue destination="xlc-Xv-0rP" kind="relationship" relationship="detailViewController" id="fU9-eH-et2"/>
+                        <segue destination="fme-xU-9cq" kind="relationship" relationship="detailViewController" id="fU9-eH-et2"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ufC-oo-N7S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -333,7 +333,7 @@
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="xlc-Xv-0rP" kind="showDetail" identifier="Show Graph" id="jvb-du-kl0"/>
+                                                            <segue destination="fme-xU-9cq" kind="showDetail" identifier="Show Graph" id="jvb-du-kl0"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDq-ef-xcC">
@@ -382,14 +382,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1V-Dy-Wje" customClass="GraphicsView" customModule="Calculator" customModuleProvider="target">
+                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="I1V-Dy-Wje" customClass="GraphicsView" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="pointsPerUnit">
-                                        <real key="value" value="31"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -400,13 +395,14 @@
                             <constraint firstAttribute="trailing" secondItem="I1V-Dy-Wje" secondAttribute="trailing" id="jV5-aU-vOQ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="dnz-QQ-TEU"/>
                     <connections>
                         <outlet property="graphicsView" destination="I1V-Dy-Wje" id="nGY-h6-YOo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWA-zE-mX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556" y="764"/>
+            <point key="canvasLocation" x="1368" y="764"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ip6-pI-zMn">
@@ -425,6 +421,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xqc-jg-xHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-256" y="6"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fof-Lf-sKb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fme-xU-9cq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="36t-dy-vls">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xlc-Xv-0rP" kind="relationship" relationship="rootViewController" id="HlZ-OB-QtF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z1U-DP-5NW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="556" y="764"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

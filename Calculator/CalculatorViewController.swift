@@ -17,9 +17,20 @@ class CalculatorViewController: UIViewController {
 	
 	@IBOutlet weak var processDescription: UILabel!
 	
-	
+	// send the program from CalculatorBrain to GraphicsViewController
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		
+		if !userIsInTheMiddleOfTyping {
+			var destinationvc = segue.destinationViewController
+			if let navcon = destinationvc as? UINavigationController {
+				destinationvc = navcon.visibleViewController ?? destinationvc
+			}
+			if let graphicsvc = destinationvc as? GraphicsViewController {
+				graphicsvc.brain = brain
+				graphicsvc.currentVariable = "M"
+				graphicsvc.navigationItem.title = brain.processDescription
+				
+			}
+		}
 	}
 	
 	

@@ -10,13 +10,37 @@ import UIKit
 
 class GraphicsViewController: UIViewController {
     
-
+	var brain: CalculatorBrain?
+	var currentVariable: String?
 
 	@IBOutlet weak var graphicsView: GraphicsView! {
 		didSet {
-			graphicsView.addGestureRecognizer(UIPinchGestureRecognizer(target: graphicsView, action: #selector(GraphicsView.changeScale(_:))))
+			graphicsView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(GraphicsViewController.changeScale(_:))))
+			graphicsView.controller = self
 		}
 	}
+	
+	
+	// used to change the scale of our graphics view, called by UIPinchGestureRecognizer
+	func changeScale(recognizer: UIPinchGestureRecognizer) {
+		switch recognizer.state {
+		case .Changed, .Ended:
+			graphicsView.pointsPerUnit *= recognizer.scale
+			recognizer.scale = 1.0
+		default:
+			break
+		}
+	}
+	
+	func isReadyToPlot() -> Bool {
+		return self.brain != nil
+	}
+	
+	func getY(x: CGFloat) -> Double {
+		brain!.variableValues[currentVariable!] = Double(x)
+		return brain!.result
+	}
+	
 	
 
 }
