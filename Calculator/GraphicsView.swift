@@ -29,6 +29,22 @@ class GraphicsView: UIView {
 		}
 	}
 	
+	func changeOrigin(recognizer: UITapGestureRecognizer) {
+		recognizer.numberOfTapsRequired = 2
+		if recognizer.state == .Ended {
+			origin = recognizer.locationInView(self)
+		}
+	}
+	
+	func moveTheGraph(recognizer: UIPanGestureRecognizer) {
+		var newOrigin = origin
+		let dxdy = recognizer.translationInView(self)
+		newOrigin.x += dxdy.x
+		newOrigin.y += dxdy.y
+		recognizer.setTranslation(CGPointZero, inView: self)
+		origin = newOrigin
+	}
+	
 	
 	override func drawRect(rect: CGRect) {
         axeDrawer.drawAxesInRect(bounds, origin: origin, pointsPerUnit: pointsPerUnit)
@@ -37,16 +53,6 @@ class GraphicsView: UIView {
 				drawGraph()
 			}
 		}
-
-		
-
-		//		let x = (-origin.x / pointsPerUnit + 2) * pointsPerUnit + origin.x
-//		print("-origin.x is \(-origin.x) and pointsPerUnit is \(pointsPerUnit) and x is \(x/pointsPerUnit)")
-//		
-//		let path = UIBezierPath()
-//		path.moveToPoint(CGPoint(x: x, y: origin.y))
-//		path.addLineToPoint(CGPoint(x: x, y: bounds.minY))
-//		path.stroke()
     }
 	
 	private func drawGraph() {
@@ -54,8 +60,6 @@ class GraphicsView: UIView {
 		for i in 0...Int(bounds.width) {
 			let x = -origin.x / pointsPerUnit + CGFloat(i) / pointsPerUnit
 			let y = controller!.getY(x)
-			print(y)
-			///这里的x是坐标 要改
 			let currentPoint = getCoordinate(x, y: y)
 			print(currentPoint)
 			if i == 0 { // for the first point, we start the path

@@ -16,6 +16,8 @@ class GraphicsViewController: UIViewController {
 	@IBOutlet weak var graphicsView: GraphicsView! {
 		didSet {
 			graphicsView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(GraphicsViewController.changeScale(_:))))
+			graphicsView.addGestureRecognizer(UITapGestureRecognizer(target: graphicsView, action: #selector(GraphicsView.changeOrigin(_:))))
+			graphicsView.addGestureRecognizer(UIPanGestureRecognizer(target: graphicsView, action: #selector(GraphicsView.moveTheGraph(_:))))
 			graphicsView.controller = self
 		}
 	}
